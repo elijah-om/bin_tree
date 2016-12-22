@@ -1,0 +1,37 @@
+C:\\Symbols;C:\\SymbolDir2
+"preLaunchTask": "task.json",
+
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": [
+        {
+            "comandname": "echo",
+            "isShellCommand": true,
+            "args": ["Hello1"],
+            "showOutput": "always"
+        }
+    ]
+}
+
+{
+    "version": "0.1.0",
+    "command": "cmd",
+    "args": ["/C"],
+    "isShellCommand": true,
+    "showOutput": "always",
+    "suppressTaskName": true,
+        "tasks": [
+        {
+            "taskName": "make",
+            "args": ["make"]
+        },
+        {
+            "taskName": "g++",
+            "args": ["g++","-o","main.exe","main.cpp"],
+            "isBuildCommand": true,
+            "showOutput": "never"
+        }
+    ]
+}

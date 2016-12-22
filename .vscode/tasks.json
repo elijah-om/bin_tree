@@ -4,6 +4,6 @@
     "version": "0.1.0",
     "command": "g++",
     "isShellCommand": true,
-    "args": ["main.cpp"],
+    "args": ["-g", "-o", "main_gdb.exe", "main.cpp"],
     "showOutput": "always"
 }
