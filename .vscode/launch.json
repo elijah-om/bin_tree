@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${workspaceRoot}/main_gdb.exe",
             "args": [],
-            "preLaunchTask": "g++",
+            "preLaunchTask": "_gdb",
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],

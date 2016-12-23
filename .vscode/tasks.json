@@ -4,6 +4,18 @@
     "version": "0.1.0",
     "command": "g++",
     "isShellCommand": true,
-    "args": ["-g", "-o", "main_gdb.exe", "main.cpp"],
-    "showOutput": "always"
+    "args": [],
+    "showOutput": "always",
+    "suppressTaskName": true,
+    "tasks": [
+        {
+            "taskName": "_gdb",
+            "args": ["-g", "-o", "main_gdb.exe", "main.cpp"]
+        },
+        {
+            "taskName": "compil",
+            "args": ["-o", "main_try.exe", "main.cpp"],
+            "isBuildCommand": true
+        }
+    ]
 }
