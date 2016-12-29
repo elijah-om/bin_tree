@@ -5,32 +5,32 @@
 using namespace std;  
 int main()  
 { 
-    int a,i,j;
+    int first,i,j;
     j = 0;
     i = 0;
-    cin >> a;
-    cout << "Loading" << endl;
-    baseBinTree *Tree = new baseBinTree(a);
-	Tree->smart_add_node(15);
-	Tree->smart_add_node(9);
-	Tree->smart_add_node(5);
-	Tree->smart_add_node(6);
-	Tree->smart_add_node(12);
-	Tree->smart_add_node(28);
-    Tree->smart_add_node(2);
-    Tree->smart_add_node(47);
-	Tree->smart_add_node(30);
-    Tree->smart_add_node(4);
-	Tree->smart_add_node(29);
-	Tree->smart_add_node(35);
-    Tree->show(cout);
-    cout << "index:" << endl;
+    // cin >> first;
+    // cout << "Loading" << endl;
+
+    baseBinTree *Tree = new baseBinTree(7);
+    int dat[13] = {15,9,5,6,12,28,2,47,30,4,29,35};
+    for (int i = 0; i < 12; i++) Tree->smart_add_node(dat[i]); 
+    Tree->smart_show(cout);
+
+    cout << "\n\n\n" << "index:" << endl;
     int ind1,ind2;
-    cin >> ind1 >> ind2;
-    Tree->search(cout,ind1,ind2,i,j);
+    // cin >> ind1 >> ind2;
+    int x = 0;
+    Tree->search(cout,2,3,i,j,x);
+    cout << "resSearch -> " << x << endl;
+    // cout << "NewResSearch -> " << *Tree[ind2] << endl;
 	Tree->del(Tree);
 
 
+    // int *a[10];
+    // *a[1] = 15;
+    // cout << *a[1];
+    
+    // cout << "\t\t15" << endl << "\t   131245\t255\t" << endl << "15\t12\t56\t46";
 
     cout << endl << "press any key!" << endl;
     char b[10];
