@@ -13,7 +13,9 @@ int main()
     cout << "\n\n\n" << "index:" << endl;
     int ind1,ind2;
     // cin >> ind1 >> ind2;
-    cout << "resSearch -> " << Tree->search(2,3) << endl;
+
+    cout << "resSearch -> " << Tree->search(2,3)->value()<< endl;
+    // cout << "resSearch -> " << Tree(2,3) << endl;
     // cout << "NewResSearch -> " << *Tree[ind2] << endl;
 	Tree->del(Tree);
 
@@ -22,7 +24,7 @@ int main()
     // *a[1] = 15;
     // cout << *a[1];
     
-    // cout << "\t\t15" << endl << "\t   131245\t255\t" << endl << "15\t12\t56\t46";
+    // cout << "\t\t15" << endl << "\t1345\t255\t" << endl << "15\t12\t56\t46";
 
     cout << endl << "press any key!" << endl;
     char b[10];

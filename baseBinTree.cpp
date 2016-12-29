@@ -54,7 +54,7 @@ void baseBinTree::add_with_depth(int dat, int &h){
     h++;
 }
 
-void baseBinTree::search_supporting(int is, int js, int ic, int &jc, int &dat)
+void baseBinTree::search_supporting(int is, int js, int ic, int &jc, baseBinTree* &dat)
 {
 	if (this->l != NULL)
 	{
@@ -62,7 +62,7 @@ void baseBinTree::search_supporting(int is, int js, int ic, int &jc, int &dat)
 		this->l->search_supporting( is, js, ic + 1, jc, dat);
 	}
 
-    if (ic==is && jc==js)dat = this->x;
+    if (ic==is && jc==js)dat = this;
 
 	if (this->r != NULL)
 	{
@@ -71,10 +71,10 @@ void baseBinTree::search_supporting(int is, int js, int ic, int &jc, int &dat)
 	}
 }
 
-int baseBinTree::search(int isc,int jsc){
+baseBinTree* baseBinTree::search(int isc,int jsc){
     int i = 0;
     int j = 0;
-    int x;
+    baseBinTree *x;
     this->search_supporting(isc,jsc,i,j,x);
     return x;
 }
@@ -94,6 +94,9 @@ void baseBinTree::del(baseBinTree *&Tree){
 
 
 
-baseBinTree::baseBinTree(){}
+baseBinTree::baseBinTree(){
+    this->depth=0;
+    this->l = this->r = NULL;
+    }
 
 baseBinTree::~baseBinTree(){}
