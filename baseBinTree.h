@@ -12,7 +12,8 @@ public:
 	void smart_add_node(int);
 	void add_node(int,int,int,bool);
 	void add_with_depth(int,int&);
-	void search(ostream &, int ,int ,int ,int&,int&);
+	int search(int ,int);
+	void search_supporting(int ,int ,int ,int&,int&);
 	int smart_search(int ,int, baseBinTree&);
 	void smart_show(ostream &);
 	baseBinTree(int);

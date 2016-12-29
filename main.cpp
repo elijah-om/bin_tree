@@ -5,12 +5,6 @@
 using namespace std;  
 int main()  
 { 
-    int first,i,j;
-    j = 0;
-    i = 0;
-    // cin >> first;
-    // cout << "Loading" << endl;
-
     baseBinTree *Tree = new baseBinTree(7);
     int dat[13] = {15,9,5,6,12,28,2,47,30,4,29,35};
     for (int i = 0; i < 12; i++) Tree->smart_add_node(dat[i]); 
@@ -19,9 +13,7 @@ int main()
     cout << "\n\n\n" << "index:" << endl;
     int ind1,ind2;
     // cin >> ind1 >> ind2;
-    int x = 0;
-    Tree->search(cout,2,3,i,j,x);
-    cout << "resSearch -> " << x << endl;
+    cout << "resSearch -> " << Tree->search(2,3) << endl;
     // cout << "NewResSearch -> " << *Tree[ind2] << endl;
 	Tree->del(Tree);
 

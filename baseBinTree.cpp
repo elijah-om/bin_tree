@@ -7,8 +7,6 @@ baseBinTree::baseBinTree(int dat){
     this->l = this->r = NULL;
     }
 
-
-
 void baseBinTree::show(ostream &stream)
 {
 	if (this->l != NULL)
@@ -56,26 +54,29 @@ void baseBinTree::add_with_depth(int dat, int &h){
     h++;
 }
 
-void baseBinTree::search(ostream &stream,int is, int js, int ic, int &jc, int &dat)
+void baseBinTree::search_supporting(int is, int js, int ic, int &jc, int &dat)
 {
 	if (this->l != NULL)
 	{
 		if ((ic+1)==is)jc = jc + 1;
-		this->l->search(stream, is, js, ic + 1, jc, dat);
+		this->l->search_supporting( is, js, ic + 1, jc, dat);
 	}
 
-    // stream << this->x << " -> " << ic << " " << jc << endl;
-    if (ic==is && jc==js){
-        // stream << "Search -> " << this->x << endl;
-        dat = this->x;
-        // return this->x;
-    }
+    if (ic==is && jc==js)dat = this->x;
 
 	if (this->r != NULL)
 	{
         if ((ic+1)==is)jc = jc + 1;
-		this->r->search(stream, is, js, ic + 1, jc, dat);
+		this->r->search_supporting(is, js, ic + 1, jc, dat);
 	}
+}
+
+int baseBinTree::search(int isc,int jsc){
+    int i = 0;
+    int j = 0;
+    int x;
+    this->search_supporting(isc,jsc,i,j,x);
+    return x;
 }
 
 void baseBinTree::add_node(int dat,int i,int j,bool lr){}
