@@ -1,5 +1,6 @@
 #include"baseBinTree.h"
-
+#include "vector"
+#include "math.h"
 
 baseBinTree::baseBinTree(int dat){
     this->x=dat;
@@ -7,13 +8,12 @@ baseBinTree::baseBinTree(int dat){
     this->l = this->r = NULL;
     }
 
-void baseBinTree::show(ostream &stream)
-{
+void baseBinTree::show(ostream &stream){
 	if (this->l != NULL)
 	{
 		this->l->show(stream);
 	}
-	stream << this->x << " ";
+	stream << this->x << "->" << this->depth << endl;
 	if (this->r != NULL)
 	{
 		this->r->show(stream);
@@ -21,17 +21,34 @@ void baseBinTree::show(ostream &stream)
 }
 void baseBinTree::smart_show(ostream &stream)
 {
-	if (this->l != NULL)
-	{
-		this->l->smart_show(stream);
-	}
-	stream << this->x << "->" << this->depth;
-    stream << endl;
-	if (this->r != NULL)
-	{
-		this->r->smart_show(stream);
-	}
+	vector< vector<baseBinTree*> > row(this->depth+1);
+    row[0].push_back(this);
+    for (int i = 1; i < row.size();i++){
+        for (int j = 0; j < row[i-1].size();j++){
+            if (row[i-1][j] != NULL){
+                row[i].push_back(row[i-1][j]->l);
+                row[i].push_back(row[i-1][j]->r);
+            }else{
+                row[i].push_back(NULL);
+                row[i].push_back(NULL);
+            }
+        }
+    }
+
+    for (int i = row.size()-1; i >=0; i--)
+    {
+        for (int j = 1; j < pow(2,i); j++) stream << "  ";
+        if (row[row.size()-i-1][0] != NULL){stream << row[row.size()-i-1][0]->x;stream << " ";}
+        else stream << "* ";
+        for (int j = 1; j < row[row.size()-i-1].size(); j++){
+            for (int s = 0; s < 2*pow(2,i) - 1; s++) stream << "  ";
+            if (row[row.size()-i-1][j] != NULL){stream << row[row.size()-i-1][j]->x;stream << " ";}
+            else stream << "* ";
+        }
+        stream << endl << endl;
+    }
 }
+
 void baseBinTree::smart_add_node(int x)
 {
     int hh = 0;
@@ -45,7 +62,7 @@ void baseBinTree::add_with_depth(int dat, int &h){
 		else this->l = new baseBinTree(dat);
 	}
 
-	if (dat>this->x) 
+	if (dat>=this->x) 
 	{
         if (this->r != NULL){this->r->add_with_depth(dat,h);}
         else this->r = new baseBinTree(dat);
