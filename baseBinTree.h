@@ -17,6 +17,7 @@ public:
 	void add_with_depth(int,int&);
 	baseBinTree* search(int ,int);
 	int value(){return this->x;};
+	void set_value(int dat){this->x = dat;};
 	void search_supporting(int ,int ,int ,int&,baseBinTree* &);
 	baseBinTree* search_supporting_pro(int ,int ,baseBinTree*);
 	void print_tree(ostream &);
@@ -26,6 +27,12 @@ public:
 	baseBinTree(istream &);
 	baseBinTree();
     ~baseBinTree();
+	baseBinTree operator= (baseBinTree*);
+	// baseBinTree* operator->() { return this; }
+
+
+	friend ostream &operator << (ostream &, baseBinTree);
+	friend istream &operator >> (istream &, baseBinTree*);
 
 	int &operator ()(int i1, int j1){
 		return this->search(i1 ,j1)->x;

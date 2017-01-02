@@ -2,6 +2,26 @@
 #include "vector"
 #include "math.h"
 
+ostream &operator << (ostream &stream,baseBinTree tree) {
+    tree.smart_show(stream);
+	return stream;
+}
+
+istream &operator >> (istream &stream,baseBinTree* tree) {
+    int dat;
+    stream >> dat;
+    tree->set_value(dat);
+	return stream;
+}
+
+baseBinTree baseBinTree::operator= (baseBinTree* tree){
+    this->x=tree->x;
+    this->depth=tree->depth;
+    this->l = tree->l;
+    this->r = tree->r;
+    return this;
+}
+
 
 baseBinTree::baseBinTree(int dat){
     this->x=dat;
