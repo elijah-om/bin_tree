@@ -10,11 +10,11 @@
     "tasks": [
         {
             "taskName": "_gdb",
-            "args": ["-g", "-o", "main_gdb.exe", "main.cpp","baseBinTree.h","baseBinTree.cpp"]
+            "args": ["-g", "-o", "main_gdb.exe", "main.cpp","baseBinTree.h","baseBinTree.cpp","BinTree.h","BinTree.cpp"]
         },
         {
             "taskName": "compil",
-            "args": ["-o", "main_try.exe", "main.cpp","baseBinTree.h","baseBinTree.cpp"],
+            "args": ["-o", "main_try.exe", "main.cpp","baseBinTree.h","baseBinTree.cpp","BinTree.h","BinTree.cpp"],
             "isBuildCommand": true
         }
     ]

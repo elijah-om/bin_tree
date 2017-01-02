@@ -7,10 +7,10 @@ ostream &operator << (ostream &stream,baseBinTree tree) {
 	return stream;
 }
 
-istream &operator >> (istream &stream,baseBinTree* tree) {
+istream &operator >> (istream &stream,baseBinTree tree) {
     int dat;
     stream >> dat;
-    tree->set_value(dat);
+    tree.set_value(dat);
 	return stream;
 }
 
@@ -28,7 +28,7 @@ baseBinTree::baseBinTree(int dat){
     this->depth=0;
     this->l = this->r = NULL;
     }
-baseBinTree::baseBinTree(baseBinTree* tree){
+baseBinTree::baseBinTree(baseBinTree *tree){
     this->x=tree->x;
     this->depth=tree->depth;
     this->l = tree->l;
@@ -177,16 +177,20 @@ baseBinTree* baseBinTree::search(int is,int js){
 
 void baseBinTree::add_node(int dat,int i,int j,bool lr){}
 
-void baseBinTree::del(baseBinTree *&Tree){
+void baseBinTree::del_helper(baseBinTree *&Tree){
 	if (Tree != NULL) 
 	{
-		del(Tree->l); 
-		del(Tree->r); 
+		del_helper(Tree->l); 
+		del_helper(Tree->r); 
 		delete Tree; 
 		Tree = NULL; 
 	}
 }
 
+void baseBinTree::del(baseBinTree &Tree){
+    baseBinTree *tr = new baseBinTree(Tree);
+    tr->del_helper(tr);
+}
 
 
 
