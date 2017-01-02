@@ -2,11 +2,36 @@
 #include "vector"
 #include "math.h"
 
+
 baseBinTree::baseBinTree(int dat){
     this->x=dat;
     this->depth=0;
     this->l = this->r = NULL;
     }
+baseBinTree::baseBinTree(baseBinTree* tree){
+    this->x=tree->x;
+    this->depth=tree->depth;
+    this->l = tree->l;
+    this->r = tree->r;
+    }
+baseBinTree::baseBinTree(istream &stream){
+    int dat,i,j,depth;
+    stream >> i >> j >> dat >> depth;
+    this->x=dat;
+    this->depth=depth;
+    this->l = this->r = NULL;
+    while(!stream.eof()){
+        stream >> i >> j >> dat >> depth;
+        
+        if (j % 2){
+            this->search(i-1,j >> 1)->r = new baseBinTree(dat);
+            this->search(i-1,j >> 1)->r->depth = depth;
+        } else{
+            this->search(i-1,j >> 1)->l = new baseBinTree(dat);
+            this->search(i-1,j >> 1)->l->depth = depth;
+        }
+    }
+}
 
 void baseBinTree::show(ostream &stream){
 	if (this->l != NULL)
@@ -49,6 +74,31 @@ void baseBinTree::smart_show(ostream &stream)
     }
 }
 
+void baseBinTree::print_tree(ostream &stream){
+    vector< vector<baseBinTree*> > row(this->depth+1);
+    row[0].push_back(this);
+    for (int i = 1; i < row.size();i++){
+        for (int j = 0; j < row[i-1].size();j++){
+            if (row[i-1][j] != NULL){
+                row[i].push_back(row[i-1][j]->l);
+                row[i].push_back(row[i-1][j]->r);
+            }else{
+                row[i].push_back(NULL);
+                row[i].push_back(NULL);
+            }
+        }
+    }
+    for (int i = 0; i < row.size();i++){
+        for (int j = 0; j < row[i].size();j++){
+            if (row[i][j]!=NULL){
+                stream << i << " " << j << " " << row[i][j]->x << " " << row[i][j]->depth << endl;
+            }
+        }
+    }
+}
+
+
+
 void baseBinTree::smart_add_node(int x)
 {
     int hh = 0;
@@ -71,6 +121,7 @@ void baseBinTree::add_with_depth(int dat, int &h){
     h++;
 }
 
+
 void baseBinTree::search_supporting(int is, int js, int ic, int &jc, baseBinTree* &dat)
 {
 	if (this->l != NULL)
@@ -88,12 +139,20 @@ void baseBinTree::search_supporting(int is, int js, int ic, int &jc, baseBinTree
 	}
 }
 
-baseBinTree* baseBinTree::search(int isc,int jsc){
-    int i = 0;
-    int j = 0;
-    baseBinTree *x;
-    this->search_supporting(isc,jsc,i,j,x);
-    return x;
+baseBinTree* baseBinTree::search_supporting_pro(int is, int js, baseBinTree* dat)
+{
+	if (dat == NULL)
+		throw 100;
+    if (is==0)
+        return dat;
+    if (js >= pow(2,is-1))
+        return search_supporting_pro(is-1,js-pow(2,is-1),dat->r);
+    else
+        return search_supporting_pro(is-1,js,dat->l);
+}
+
+baseBinTree* baseBinTree::search(int is,int js){
+    return search_supporting_pro(is,js,this);
 }
 
 void baseBinTree::add_node(int dat,int i,int j,bool lr){}

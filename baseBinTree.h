@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 class baseBinTree
 {
@@ -17,9 +18,12 @@ public:
 	baseBinTree* search(int ,int);
 	int value(){return this->x;};
 	void search_supporting(int ,int ,int ,int&,baseBinTree* &);
-	int smart_search(int ,int, baseBinTree&);
+	baseBinTree* search_supporting_pro(int ,int ,baseBinTree*);
+	void print_tree(ostream &);
 	void smart_show(ostream &);
 	baseBinTree(int);
+	baseBinTree(baseBinTree*);
+	baseBinTree(istream &);
 	baseBinTree();
     ~baseBinTree();
 
