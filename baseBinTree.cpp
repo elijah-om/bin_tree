@@ -2,6 +2,8 @@
 #include "vector"
 #include "math.h"
 
+
+
 ostream &operator << (ostream &stream,baseBinTree tree) {
     tree.smart_show(stream);
 	return stream;
@@ -52,14 +54,24 @@ baseBinTree::baseBinTree(istream &stream){
         }
     }
 }
+baseBinTree::baseBinTree(){
+    this->depth=0;
+    this->l = this->r = NULL;
+}
+
+baseBinTree::~baseBinTree(){}
+
+
 
 void baseBinTree::show(ostream &stream){
 	if (this->l != NULL)
 	{
 		this->l->show(stream);
 	}
+    //----
 	stream << this->x << "->" << this->depth << endl;
-	if (this->r != NULL)
+	//----
+    if (this->r != NULL)
 	{
 		this->r->show(stream);
 	}
@@ -191,12 +203,3 @@ void baseBinTree::del(baseBinTree &Tree){
     baseBinTree *tr = new baseBinTree(Tree);
     tr->del_helper(tr);
 }
-
-
-
-baseBinTree::baseBinTree(){
-    this->depth=0;
-    this->l = this->r = NULL;
-    }
-
-baseBinTree::~baseBinTree(){}

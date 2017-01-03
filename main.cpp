@@ -1,5 +1,5 @@
 #include <iostream>
-#include "baseBinTree.h"
+#include "BinTree.h"
 #include "Windows.h"
 #include "vector"
 using namespace std;  
@@ -63,19 +63,21 @@ int main()
 { 
      try {
 
-        ofstream fout("new_tree.txt");
-        baseBinTree Tree = new baseBinTree(7);
+
         int dat[13] = {15,9,5,6,12,28,2,47,4};
-        for (int i = 0; i < 9; i++) Tree.smart_add_node(dat[i]); 
-        Tree.print_tree(fout);
-        fout.close();
-        Tree.del(Tree);
+        // ofstream fout("new_tree.txt");
+        // baseBinTree Tree = new baseBinTree(7);
+        
+        // for (int i = 0; i < 9; i++) Tree.smart_add_node(dat[i]); 
+        // Tree.print_tree(fout);
+        // fout.close();
+        // Tree.del(Tree);
 
         ifstream fin("source/tree1.txt");
         baseBinTree Tree2 = new baseBinTree(fin);
-        Tree2.smart_show(cout);
         fin.close();
-
+        Tree2.smart_show(cout);
+        
         // ofstream fout("new_tree.txt");
         int ind1,ind2;
         cout << "index: ";
@@ -88,6 +90,15 @@ int main()
         cout << "\n\n\n";
         // Tree2[ind1][ind2]->smart_show(cout);
 
+
+
+        fin.open("source/tree1.txt");
+        BinTree Tree4 = new BinTree(fin);
+        // for (int i = 0; i < 9; i++) Tree4.smart_add_node(dat[i]); 
+        // Tree4.smart_show(cout);
+        cout << "Search result: " << endl;
+        Tree4[ind1][ind2]->smart_show(cout);
+        fin.close();
 
 
     } catch (int error) {

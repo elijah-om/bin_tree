@@ -21,10 +21,15 @@ public:
 	void add_node(int,int,int,bool);
 	void add_with_depth(int,int&);
 	baseBinTree* search(int ,int);
+	baseBinTree* search(int);
 	int value(){return this->x;};
+	baseBinTree* left(){return this->l;};
+	baseBinTree* right(){return this->r;};
+	int my_depth(){return this->depth;};
 	void set_value(int dat){this->x = dat;};
 	void search_supporting(int ,int ,int ,int&,baseBinTree* &);
 	baseBinTree* search_supporting_pro(int ,int ,baseBinTree*);
+
 	void print_tree(ostream &);
 	void smart_show(ostream &);
 
@@ -33,29 +38,15 @@ public:
 	baseBinTree(istream &);
 	baseBinTree();
     ~baseBinTree();
+
+
 	baseBinTree operator= (baseBinTree*);
 	// baseBinTree* operator->() { return this; }
 
 
 	friend ostream &operator << (ostream &, baseBinTree);
 	friend istream &operator >> (istream &, baseBinTree*);
-
-	baseBinTree operator ()(int i1, int j1){
-		return this->search(i1 ,j1);
-	};
-
-
-
-
-	// int &operator [] (int j1) {
-	// 	int icb = 0;
-	// 	int jcb = 0;
-	// 	int xs;
-	// 	this->search(cout,2,j1,icb,jcb,xs);
-	// 	return xs;
-	// };
-
-
 private:
-    
 };
+
+
