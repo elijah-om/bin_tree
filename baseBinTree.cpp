@@ -9,6 +9,11 @@ ostream &operator << (ostream &stream,baseBinTree tree) {
 	return stream;
 }
 
+ostream &operator << (ostream &stream,baseBinTree *tree) {
+    tree->smart_show(stream);
+	return stream;
+}
+
 istream &operator >> (istream &stream,baseBinTree tree) {
     int dat;
     stream >> dat;
@@ -63,17 +68,17 @@ baseBinTree::~baseBinTree(){}
 
 
 
-void baseBinTree::show(ostream &stream){
+void baseBinTree::around(ostream &stream){
 	if (this->l != NULL)
 	{
-		this->l->show(stream);
+		this->l->around(stream);
 	}
     //----
 	stream << this->x << "->" << this->depth << endl;
 	//----
     if (this->r != NULL)
 	{
-		this->r->show(stream);
+		this->r->around(stream);
 	}
 }
 void baseBinTree::smart_show(ostream &stream)
@@ -153,38 +158,38 @@ void baseBinTree::add_with_depth(int dat, int &h){
     h++;
 }
 
-
-void baseBinTree::search_supporting(int is, int js, int ic, int &jc, baseBinTree* &dat)
+baseBinTree* baseBinTree::search_helper_pro_by_val(int dat, baseBinTree* tree)
 {
-	if (this->l != NULL)
-	{
-		if ((ic+1)==is)jc = jc + 1;
-		this->l->search_supporting( is, js, ic + 1, jc, dat);
-	}
+	if (tree == NULL)
+		throw 101;
+    if (tree->x == dat)
+        return tree;
 
-    if (ic==is && jc==js)dat = this;
 
-	if (this->r != NULL)
-	{
-        if ((ic+1)==is)jc = jc + 1;
-		this->r->search_supporting(is, js, ic + 1, jc, dat);
-	}
+    if (dat > tree->x)
+        return search_helper_pro_by_val(dat, tree->r);
+    else
+        return search_helper_pro_by_val(dat, tree->l);
 }
 
-baseBinTree* baseBinTree::search_supporting_pro(int is, int js, baseBinTree* dat)
+baseBinTree* baseBinTree::search_helper_pro(int is, int js, baseBinTree* dat)
 {
 	if (dat == NULL)
 		throw 100;
     if (is==0)
         return dat;
     if (js >= pow(2,is-1))
-        return search_supporting_pro(is-1,js-pow(2,is-1),dat->r);
+        return search_helper_pro(is-1,js-pow(2,is-1),dat->r);
     else
-        return search_supporting_pro(is-1,js,dat->l);
+        return search_helper_pro(is-1,js,dat->l);
 }
 
 baseBinTree* baseBinTree::search(int is,int js){
-    return search_supporting_pro(is,js,this);
+    return search_helper_pro(is,js,this);
+}
+
+baseBinTree* baseBinTree::search(int dat){
+    return search_helper_pro_by_val(dat,this);
 }
 
 void baseBinTree::add_node(int dat,int i,int j,bool lr){}

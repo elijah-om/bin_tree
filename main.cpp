@@ -76,18 +76,20 @@ int main()
         ifstream fin("source/tree1.txt");
         baseBinTree Tree2 = new baseBinTree(fin);
         fin.close();
-        Tree2.smart_show(cout);
+        cout << Tree2;
         
         // ofstream fout("new_tree.txt");
         int ind1,ind2;
         cout << "index: ";
         cin >> ind1 >> ind2;
         cout << "resSearch -> " << endl;
-        baseBinTree Tree3 = new baseBinTree(0);
-        Tree3 = Tree2.search(ind1,ind2);
+        baseBinTree Tree3 = new baseBinTree(Tree2);
+        *Tree3.search(ind1,ind2-1) = Tree2.search(ind1,ind2);
         cout << Tree3;
-        // fout.close();
-        cout << "\n\n\n";
+        cout << Tree2.search(5);
+        cout << "\n-----------\n";
+        
+
         // Tree2[ind1][ind2]->smart_show(cout);
 
 
@@ -96,8 +98,12 @@ int main()
         BinTree Tree4 = new BinTree(fin);
         // for (int i = 0; i < 9; i++) Tree4.smart_add_node(dat[i]); 
         // Tree4.smart_show(cout);
+        // cout << Tree4;
         cout << "Search result: " << endl;
-        Tree4[ind1][ind2]->smart_show(cout);
+        // Tree4[ind1][ind2]->smart_show(cout);
+        BinTree result = new BinTree(Tree4[ind1][ind2]);
+        cout << result;
+        cout << Tree4.search(5);
         fin.close();
 
 

@@ -57,3 +57,22 @@ C:\\Symbols;C:\\SymbolDir2
         }
     ]
 }
+
+
+
+void baseBinTree::search_supporting(int is, int js, int ic, int &jc, baseBinTree* &dat)
+{
+	if (this->l != NULL)
+	{
+		if ((ic+1)==is)jc = jc + 1;
+		this->l->search_supporting( is, js, ic + 1, jc, dat);
+	}
+
+    if (ic==is && jc==js)dat = this;
+
+	if (this->r != NULL)
+	{
+        if ((ic+1)==is)jc = jc + 1;
+		this->r->search_supporting(is, js, ic + 1, jc, dat);
+	}
+}

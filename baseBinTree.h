@@ -14,7 +14,7 @@ protected:
 	int x;
 public:
 	
-	void show(ostream &);
+	void around(ostream &);
 	void del_helper(baseBinTree *&);
 	void del(baseBinTree &);
 	void smart_add_node(int);
@@ -27,8 +27,8 @@ public:
 	baseBinTree* right(){return this->r;};
 	int my_depth(){return this->depth;};
 	void set_value(int dat){this->x = dat;};
-	void search_supporting(int ,int ,int ,int&,baseBinTree* &);
-	baseBinTree* search_supporting_pro(int ,int ,baseBinTree*);
+	baseBinTree* search_helper_pro(int ,int ,baseBinTree*);
+	baseBinTree* search_helper_pro_by_val(int,baseBinTree*);
 
 	void print_tree(ostream &);
 	void smart_show(ostream &);
@@ -45,6 +45,7 @@ public:
 
 
 	friend ostream &operator << (ostream &, baseBinTree);
+	friend ostream &operator << (ostream &, baseBinTree*);
 	friend istream &operator >> (istream &, baseBinTree*);
 private:
 };
