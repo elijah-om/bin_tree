@@ -10,24 +10,19 @@ class treeHelper : public baseBinTree{
             this->r = tr->right();
             this->index = ind; 
         }
-        baseBinTree* operator[] (int j){
-            return this->search(this->index, j);
-        }
+        baseBinTree* operator[] (int);
         friend baseBinTree;
 };
 
 class BinTree : public baseBinTree{
-        // BinTree *lchild, *rchild;
 	public:
         BinTree(int dat) : baseBinTree(dat) {}
         BinTree(baseBinTree* tr) : baseBinTree(tr) {}
         BinTree(istream &str) : baseBinTree(str) {}
         BinTree() : baseBinTree() {}
         
-        treeHelper operator[] (int i){
-            treeHelper *temp = new treeHelper(this, i);
-            return *temp;
-        }
+        baseBinTree& operator() (int);
+        baseBinTree& operator() (int,int);
 
-    // friend ostream &operator << (ostream &, BinTree);
+        treeHelper operator[] (int);
 };

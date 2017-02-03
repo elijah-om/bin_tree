@@ -1,7 +1,19 @@
 #include"BinTree.h"
 
+baseBinTree* treeHelper::operator[] (int j){
+    return this->search(this->index, j);
+}
 
-// ostream &operator << (ostream &stream,BinTree tree) {
-//     tree.smart_show(stream);
-// 	return stream;
-// }
+treeHelper BinTree::operator[] (int i){
+    treeHelper *temp = new treeHelper(this, i);
+    return *temp;
+}
+
+baseBinTree &BinTree:: operator() (int dat){
+    return *this->search(dat);
+}
+
+baseBinTree &BinTree:: operator() (int i, int j){
+    return *this->search(i,j);
+}
+

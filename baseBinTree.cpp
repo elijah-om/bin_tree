@@ -21,11 +21,16 @@ istream &operator >> (istream &stream,baseBinTree tree) {
 	return stream;
 }
 
-baseBinTree baseBinTree::operator= (baseBinTree* tree){
-    this->x=tree->x;
-    this->depth=tree->depth;
-    this->l = tree->l;
-    this->r = tree->r;
+baseBinTree baseBinTree::operator= (baseBinTree tree){
+    this->x=tree.x;
+    this->depth=tree.depth;
+    this->l = tree.l;
+    this->r = tree.r;
+    return this;
+}
+
+baseBinTree baseBinTree::operator= (int dat){
+    this->x=dat;
     return this;
 }
 
@@ -176,8 +181,13 @@ baseBinTree* baseBinTree::search_helper_pro(int is, int js, baseBinTree* dat)
 {
 	if (dat == NULL)
 		throw 100;
-    if (is==0)
-        return dat;
+    if (is==0){
+        if (js > 0)
+            throw 103;
+        else
+            return dat;
+    }
+
     if (js >= pow(2,is-1))
         return search_helper_pro(is-1,js-pow(2,is-1),dat->r);
     else

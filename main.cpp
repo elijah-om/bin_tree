@@ -86,7 +86,7 @@ int main()
         baseBinTree Tree3 = new baseBinTree(Tree2);
         *Tree3.search(ind1,ind2-1) = Tree2.search(ind1,ind2);
         cout << Tree3;
-        cout << Tree2.search(5);
+        // cout << Tree2.search(5);
         cout << "\n-----------\n";
         
 
@@ -102,8 +102,9 @@ int main()
         cout << "Search result: " << endl;
         // Tree4[ind1][ind2]->smart_show(cout);
         BinTree result = new BinTree(Tree4[ind1][ind2]);
-        cout << result;
-        cout << Tree4.search(5);
+        Tree4(ind1,ind2-1) = result;
+        cout << Tree4;
+        cout << Tree4(28);
         fin.close();
 
 

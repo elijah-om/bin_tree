@@ -40,7 +40,10 @@ public:
     ~baseBinTree();
 
 
-	baseBinTree operator= (baseBinTree*);
+	baseBinTree operator= (baseBinTree);
+	baseBinTree operator= (int);
+
+
 	// baseBinTree* operator->() { return this; }
 
 
